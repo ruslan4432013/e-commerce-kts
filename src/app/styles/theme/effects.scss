@@ -1,0 +1,9 @@
+@mixin shadow-small {
+  box-shadow: 0 4px 120px rgba(175, 173, 181, 0.15);
+  border-radius: 4px;
+}
+
+@mixin shadow-checkbox {
+  box-shadow: 0 4px 120px #AFADB5;
+}
+
