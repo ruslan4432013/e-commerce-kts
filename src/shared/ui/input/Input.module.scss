@@ -1,0 +1,35 @@
+.input {
+  padding: 26px 28px;
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+  font-family: 'Eudoxus Sans', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: #151411;
+  line-height: 180%;
+  box-shadow: 0 4px 120px rgba(175, 173, 181, 0.15);
+  background: #FFFFFF;
+  border: none;
+
+  &::placeholder {
+    font-family: 'Eudoxus Sans', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 180%;
+    color: #AFADB5;
+  }
+
+  &:focus {
+    outline: 1px solid #518581;
+  }
+}
+
+.input_disabled {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 180%;
+  opacity: .7;
+}
