@@ -1,10 +1,9 @@
+@use 'src/styles' as *;
+
 .root {
   position: relative;
 }
 
 .loader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%, -50%);
+  @include center-both
 }
