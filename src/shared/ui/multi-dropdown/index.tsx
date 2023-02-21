@@ -1,7 +1,8 @@
-import React, { useState, type MouseEvent } from 'react'
-import cn from 'classnames'
-import s from './MultiDropdown.module.scss'
+import React, { FC, useState } from "react";
 
+import cn from "classnames";
+
+import s from "./styles.module.scss";
 
 export type Option = {
   /** Ключ варианта, используется для отправки на бек/использования в коде */
@@ -24,14 +25,15 @@ export type MultiDropdownProps = {
   pluralizeOptions: (value: Option[]) => string;
 };
 
-const getDropdownMenuHeight = (optionHeight: number, optionLength: number) => optionHeight * optionLength - 9
+const getDropdownMenuHeight = (optionHeight: number, optionLength: number) =>
+  optionHeight * optionLength - 9;
 
 export const MultiDropdown: FC<MultiDropdownProps> = (props) => {
-  const { disabled, onChange, options, value, pluralizeOptions } = props
-  const [isOpen, setIsOpen] = useState(false)
+  const { disabled, onChange, options, value, pluralizeOptions } = props;
+  const [isOpen, setIsOpen] = useState(false);
   const dropdownMenuStyle = {
-    height: isOpen && !disabled ? getDropdownMenuHeight(50, options.length) : 0
-  }
+    height: isOpen && !disabled ? getDropdownMenuHeight(50, options.length) : 0,
+  };
 
   const handleDropdownClick = () => {
     if (!disabled) {
@@ -46,10 +48,10 @@ export const MultiDropdown: FC<MultiDropdownProps> = (props) => {
     onChange(newValue);
   };
   return (
-    <div className={cn(s['multi-dropdown'], 'multi-dropdown')}>
+    <div className={cn(s["multi-dropdown"], "multi-dropdown")}>
       <button
         className={cn(s.dropdown_toggle, {
-          [s.focused]: isOpen
+          [s.focused]: isOpen,
         })}
         id="multiDropdownMenuButton"
         type="button"
@@ -58,28 +60,27 @@ export const MultiDropdown: FC<MultiDropdownProps> = (props) => {
       >
         {pluralizeOptions(value)}
       </button>
-      {isOpen && !disabled &&
-          <ul
-              style={dropdownMenuStyle}
-              className={s.dropdown_menu}
-              role={'menuitem'}
-              aria-expanded="false"
-              aria-labelledby="multiDropdownMenuButton"
-          >
-            {options.map((option) => (
-              <li
-                key={option.key}
-                onClick={handleOptionClick(option)}
-                className={cn(s.dropdown_menu_item, {
-                  [s.dropdown_menu_item__active]: value.includes(option)
-                })}
-              >
-                {option.value}
-              </li>
-            ))}
-          </ul>
-      }
+      {isOpen && !disabled && (
+        <ul
+          style={dropdownMenuStyle}
+          className={s.dropdown_menu}
+          role={"menuitem"}
+          aria-expanded="false"
+          aria-labelledby="multiDropdownMenuButton"
+        >
+          {options.map((option) => (
+            <li
+              key={option.key}
+              onClick={handleOptionClick(option)}
+              className={cn(s.dropdown_menu_item, {
+                [s.dropdown_menu_item__active]: value.includes(option),
+              })}
+            >
+              {option.value}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
-
-  )
-}
+  );
+};

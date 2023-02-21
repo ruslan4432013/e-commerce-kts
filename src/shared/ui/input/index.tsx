@@ -1,11 +1,13 @@
-import React from 'react'
-import s from './Input.module.scss'
-import cn from 'classnames'
+import React, { InputHTMLAttributes } from "react";
+import { FC } from "react";
 
+import cn from "classnames";
+
+import s from "./styles.module.scss";
 
 export type InputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  'onChange' | 'value'
+  "onChange" | "value"
 > & {
   /** Значение поля */
   value: string;
@@ -14,17 +16,17 @@ export type InputProps = Omit<
 };
 
 export const Input: FC<InputProps> = (props) => {
-  const { className, value, onChange, disabled, ...other } = props
+  const { className, value, onChange, disabled, ...other } = props;
   return (
     <input
-      className={cn(className, s.input, 'input', {
-        [s.input_disabled]: disabled
+      className={cn(className, s.input, "input", {
+        [s.input_disabled]: disabled,
       })}
       disabled={disabled}
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      type={'text'}
+      type={"text"}
       {...other}
     />
-  )
-}
+  );
+};

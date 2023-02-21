@@ -2,8 +2,8 @@ import { ButtonHTMLAttributes, FC, PropsWithChildren } from "react";
 
 import cn from "classnames";
 
-import s from "./Button.module.scss";
-import { Loader, LoaderSize } from "../loader/Loader";
+import s from "./styles.module.scss";
+import { Loader, LoaderSize } from "../loader";
 
 export type ButtonProps = PropsWithChildren<{
   /**

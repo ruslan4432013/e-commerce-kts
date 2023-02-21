@@ -1,10 +1,12 @@
-import React from 'react'
-import s from './CheckBox.module.scss'
-import cn from 'classnames'
+import React, { FC, InputHTMLAttributes } from "react";
+
+import cn from "classnames";
+
+import s from "./styles.module.scss";
 
 export type CheckBoxProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  'onChange'
+  "onChange"
 > & {
   /** Вызывается при клике на чекбокс */
   onChange: (value: boolean) => void;
@@ -17,7 +19,6 @@ export const CheckBox: FC<CheckBoxProps> = ({ onChange, ...props }) => (
       {...props}
       onChange={(e) => onChange(e.target.checked)}
     />
-    <span className={cn(s.checkmark, 'checkbox')}/>
+    <span className={cn(s.checkmark, "checkbox")} />
   </label>
-
-)
+);
