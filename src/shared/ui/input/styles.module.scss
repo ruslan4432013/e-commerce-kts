@@ -1,27 +1,27 @@
+@use 'src/styles' as *;
+
 .input {
   padding: 26px 28px;
   box-sizing: border-box;
   width: 100%;
   outline: none;
-  font-family: 'Eudoxus Sans', sans-serif;
   font-weight: 500;
   font-size: 18px;
-  color: #151411;
+  color: var(--dark-color);
   line-height: 180%;
-  box-shadow: 0 4px 120px rgba(175, 173, 181, 0.15);
-  background: #FFFFFF;
+  background: var(--light-color);
   border: none;
+  @include shadow-small;
 
   &::placeholder {
-    font-family: 'Eudoxus Sans', sans-serif;
     font-weight: 500;
     font-size: 18px;
     line-height: 180%;
-    color: #AFADB5;
+    color: var(--secondary-color);
   }
 
   &:focus {
-    outline: 1px solid #518581;
+    outline: 1px solid var(--primary-color);
   }
 }
 

@@ -1,6 +1,6 @@
 .button {
-  color: #fff;
-  background-color: #518581;
+  color: var(--light-color);
+  background-color: var(--primary-color);
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -8,7 +8,6 @@
   padding: 16px 28px;
   box-sizing: border-box;
   border: none;
-  font-family: 'Eudoxus Sans', sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
@@ -25,13 +24,13 @@
 
 
   .loader > div {
-    border-color: #ffffff;
+    border-color: var(--light-color);
     border-bottom-color: transparent;
   }
 }
 
 .button_disabled {
-  background: #D9D9D9;
+  background: var(--gray-color);
 }
 
 .button_load {

@@ -1,3 +1,5 @@
+@use 'src/styles' as *;
+
 .checkbox {
   display: block;
   position: relative;
@@ -25,14 +27,14 @@
   left: 0;
   height: 40px;
   width: 40px;
-  border: 1px solid #FFFFFF;
-  background-color: white;
-  box-shadow: 0 4px 120px #AFADB5;
+  border: 1px solid var(--light-color);
+  background-color: var(--light-color);
+  @include shadow-checkbox
 }
 
 /* On mouse-over, add a grey background color */
 .checkbox:hover input ~ .checkmark {
-  border: 1px solid #518581;
+  border: 1px solid var(--primary-color);
 }
 
 .checkbox:hover input:disabled ~ .checkmark {
@@ -41,7 +43,7 @@
 
 /* When the checkbox is checked, add a blue background */
 .checkbox input:checked ~ .checkmark {
-  background-color: #FFFFFF;
+  background-color: var(--light-color);
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */

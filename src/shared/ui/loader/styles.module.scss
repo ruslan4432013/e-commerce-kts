@@ -1,7 +1,7 @@
 
 .loader {
   border-style: solid;
-  border-color: #518581;
+  border-color: var(--primary-color);
   border-radius: 50%;
   border-bottom-color: transparent;
   animation: rotate 1s linear infinite;
