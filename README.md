@@ -1,46 +1,84 @@
-# Getting Started with Create React App
+# E-Commerce проект по продаже мебели на React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Этот проект - это пример интернет-магазина по продаже мебели, созданный с использованием React. Он содержит каталог товаров, страницу товаров .
 
-## Available Scripts
+## Установка и запуск проекта
 
-In the project directory, you can run:
+1. Клонируйте репозиторий на свой компьютер:
+    ```shell
+    git clone https://github.com/ruslan4432013/e-commerce-kts.git
+    ```
+2. Перейдите в папку проекта:
+    ```shell
+    cd  e-commerce-kts
+    ```
+3. Установите зависимости с помощью менеджера пакетов yarn:
+    ```shell
+    yarn install
+    ```
+4. Установите зависимости с помощью менеджера пакетов yarn:
+    ```shell
+    yarn start
+    ```
+5. Откройте в браузере страницу http://localhost:3000 для просмотра проекта.
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Функциональность
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+В этом проекте реализован следующий функционал:
 
-### `yarn test`
++ Каталог товаров с возможностью поиска и фильтрации по категориям
++ Страница отдельного товара
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Технологии
 
-### `yarn build`
+В этом проекте использованы следующие технологии:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
++ **React** - библиотека для создания пользовательских интерфейсов
++ **React Router** - для управления маршрутизацией приложения
++ **MobX** - для управления состоянием приложения
++ **Axios** - для отправки HTTP-запросов на сервер
++ **SASS** - для стилизации компонентов
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Структура проекта
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Структура проекта выглядит следующим образом:
+```
+└── src/
+    ├── app/                    # Инициализирующая логика приложения                #
+    |                           #
+    ├── pages/                  # Слой: Страницы приложения
+    |   ├── {some-page}/        #     Слайс: (пример: Main страница)
+    |   |   ├── lib/            #         Сегмент: Инфраструктурная-логика (helpers/utils)
+    |   |   ├── model/          #         Сегмент: Бизнес-логика
+    |   |   └── ui/             #         Сегмент: Логика UI
+    |   ...                     #
+    |                           #
+    ├── widgets/                # Слой: Самостоятельные и полноценные блоки для страниц
+    |   ├── {some-widget}/      #     Слайс: (пример: Header widget)
+    |   |   ├── lib/            #         Сегмент: Инфраструктурная-логика (helpers/utils)
+    |   |   ├── model/          #         Сегмент: Бизнес-логика
+    |   |   └── ui/             #         Сегмент: Логика UI
+    ├── features/               # Слой: Обрабатываемые пользовательские сценарии
+    |   ├── {some-feature}/     #     Слайс: (пример: Filter feature)
+    |   |   ├── lib/            #         Сегмент: Инфраструктурная-логика (helpers/utils)
+    |   |   ├── model/          #         Сегмент: Бизнес-логика
+    |   |   └── ui/             #         Сегмент: Логика UI
+    |   ...                     #
+    |                           #
+    ├── entities/               # Слой: Бизнес-сущности, которыми оперирует предметная область
+    |   ├── {some-entity}/      #     Слайс: (например: сущность Product)
+    |   |   ├── lib/            #         Сегмент: Инфраструктурная-логика (helpers/utils)
+    |   |   ├── model/          #         Сегмент: Бизнес-логика
+    |   |   └── ui/             #         Сегмент: Логика UI
+    |   ...                     #
+    |                           #
+    ├── shared/                 # Слой: Переиспользуемые модули, без привязки к бизнес-логике
+    |   ├── api/                #         Сегмент: Логика запросов к API (api instances, requests, ...)
+    |   ├── config/             #         Сегмент: Конфигурация приложения (env-vars, ...)
+    |   ├── lib/                #         Сегмент: Инфраструктурная логика приложения (utils/helpers)
+    |   └── ui/                 #         Сегмент: UIKit приложения
+    |   ...                     #
+    |                           #
+    └── index.tsx/              #
+```
