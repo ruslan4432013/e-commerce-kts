@@ -27,11 +27,17 @@
 @mixin heading5 {
   font-weight: $fw-bold;
   font-size: 18px;
+   @include mobile {
+    font-size: 14px;
+  }
 }
 
 @mixin paragraph3 {
   font-weight: $fw-medium;
   font-size: 18px;
+  @include mobile {
+    font-size: 14px;
+  }
 }
 
 @mixin text-regular {

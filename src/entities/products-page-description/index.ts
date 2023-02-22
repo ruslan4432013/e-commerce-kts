@@ -1,0 +1,1 @@
+export { ProductsPageDescription } from "./ui";

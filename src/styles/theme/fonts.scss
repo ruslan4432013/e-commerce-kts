@@ -6,7 +6,7 @@ $fw-semibold: 600;
 $fw-bold: 700;
 $fw-extrabold: 800;
 
-@mixin font-size($size, $lh: 1.3) {
+@mixin font-size($size, $lh: 1.8) {
   font-size: $size;
   line-height: math.ceil($lh * $size);
 }

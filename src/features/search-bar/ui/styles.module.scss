@@ -1,0 +1,129 @@
+@use 'src/styles' as *;
+
+@mixin filter_button_font {
+  @include mobile {
+    @include font-size(14px)
+  }
+  @include desktop {
+    @include font-size(18px)
+  }
+}
+
+.root {
+  display: flex;
+  @include mobile {
+    flex-direction: column;
+    gap: 16px;
+  }
+  @include desktop {
+    flex-direction: row;
+    gap: 30px;
+  }
+}
+
+
+.search {
+  &_bar {
+    @include relative();
+    @include mobile {
+      max-height: 54px;
+    }
+    @include desktop {
+      max-height: 84px;
+      flex-grow: 1;
+    }
+  }
+
+  &_icon {
+    @include center-vertical;
+
+    @include mobile {
+      height: 24px;
+      width: 24px;
+      left: 14px;
+    }
+    @include desktop {
+      height: 32px;
+      width: 32px;
+      left: 24px;
+    }
+  }
+
+  &_button {
+    line-height: 130%;
+    @include heading5;
+    @include center-vertical;
+    @include mobile {
+      max-height: 38px;
+      padding: 10px 18px;
+      right: 8px;
+    }
+    @include desktop {
+      max-height: 54px;
+      right: 28px;
+    }
+  }
+}
+
+.input {
+  max-height: inherit;
+  @include mobile {
+    padding-right: 118px;
+    padding-left: 42px;
+  }
+  @include desktop {
+    padding-right: 176px;
+    padding-left: 75px;
+  }
+}
+
+.filter {
+  @include relative();
+
+  button {
+    @include filter_button_font;
+    text-align: center;
+    @include mobile {
+      padding: 11px 0;
+
+      min-height: 48px;
+    }
+    @include desktop {
+      padding: 26px 52px;
+      min-height: 84px;
+      width: 190px;
+    }
+  }
+
+
+  &_text_wrapper {
+    @include center-both;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: none;
+    @include mobile {
+      gap: 8px;
+    }
+    @include desktop {
+      gap: 12px;
+    }
+  }
+
+  &_icon {
+    @include mobile {
+      width: 20px;
+      height: 20px;
+    }
+    @include desktop {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  &_text {
+    @include filter_button_font;
+  }
+}
+
