@@ -1,0 +1,36 @@
+@use 'src/styles' as *;
+
+.root {
+  margin-top: 48px;
+  margin-bottom: 36px;
+  @include desktop {
+    margin-top: 50px;
+    margin-bottom: 54px;
+  }
+}
+
+.title {
+  @include font-size(18px, 1.3);
+  font-weight: $fw-bold;
+  @include desktop {
+    @include font-size(32px, 1.3);
+  }
+}
+
+.related_items__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 23px;
+  column-gap: 15px;
+  row-gap: 25px;
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 30px;
+    column-gap: 30px;
+    li:last-child {
+      display: none;
+    }
+  }
+
+
+}

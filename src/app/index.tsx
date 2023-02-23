@@ -1,6 +1,7 @@
 import "@styles/globals.scss";
-import { ProductsPage } from "@pages/products";
+import { router } from "@pages/index";
+import { RouterProvider } from "react-router-dom";
 
 export function App() {
-  return <ProductsPage />;
+  return <RouterProvider router={router} />;
 }

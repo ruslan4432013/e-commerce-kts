@@ -1,4 +1,5 @@
 import cn from "classnames";
+import { Link } from "react-router-dom";
 
 import { ReactComponent as BagIcon } from "./bag-2.svg";
 import { ReactComponent as Logo } from "./logo.svg";
@@ -10,12 +11,14 @@ export const Navigation = () => {
   return (
     <div className={s.root}>
       <div className={s.navigation_wrapper}>
-        <div className={s.icon}>
-          <Logo />
-        </div>
+        <Link to={"/"}>
+          <div className={s.icon}>
+            <Logo />
+          </div>
+        </Link>
         <nav className={s.nav}>
           <ul className={s.links}>
-            <li className={s.link}>Products</li>
+            <li className={cn(s.link, s.active)}>Products</li>
             <li className={s.link}>Categories</li>
             <li className={s.link}>About Us</li>
           </ul>

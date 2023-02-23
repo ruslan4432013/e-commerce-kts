@@ -6,7 +6,7 @@ import s from "./styles.module.scss";
 
 export const Header = () => {
   return (
-    <header className={s.root}>
+    <header>
       <Navigation />
       <div className={s.container}>
         <ProductsPageDescription />

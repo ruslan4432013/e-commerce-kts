@@ -1,0 +1,1 @@
+export { RelatedItems } from "./ui";

@@ -1,0 +1,59 @@
+@use 'src/styles' as *;
+
+.slider {
+  width: 100%;
+  height: calc(88.5vw * 327 / 375);
+  max-width: 600px;
+  max-height: 600px;
+  transition: all 0.5s ease-in-out;
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+
+  @media (min-width: 768px) and (max-width: 1200px){
+    width: 50vw;
+    height: 50vw;
+  }
+
+  &_arrow {
+    background: var(--dark-color);
+    cursor: pointer;
+    border: 1px solid var(--dark-color);
+    border-radius: 50%;
+
+    @include shadow-small;
+    @include center-vertical;
+
+    padding: 10px;
+
+    @include desktop {
+      padding: 16px;
+    }
+
+    &:active {
+      opacity: .7;
+    }
+
+    &__left {
+      left: 16px;
+    }
+
+    &__right {
+      right: 16px;
+    }
+  }
+}
+
+
+.arrow_right {
+  transform: rotateZ(180deg);
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  @include desktop {
+    width: 30px;
+    height: 30px;
+  }
+}
