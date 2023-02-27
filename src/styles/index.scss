@@ -1,0 +1,24 @@
+@import 'theme/breakpoints';
+@import 'theme/colors';
+@import 'theme/fonts';
+@import 'theme/effects';
+@import 'theme/mixins';
+@import 'theme/center';
+@import 'theme/position';
+
+$desktop-padding: 30px;
+$mobile-padding: 24px;
+
+@mixin container {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+
+  padding-left: $desktop-padding;
+  padding-right: $desktop-padding;
+
+  @include mobile {
+    padding-left: $mobile-padding;
+    padding-right: $mobile-padding;
+  }
+}

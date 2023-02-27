@@ -1,0 +1,10 @@
+@use 'src/styles' as *;
+
+.main {
+  @include container;
+  margin-top: 50px;
+  @include desktop {
+    margin-top: 100px;
+  }
+}
+

@@ -1,0 +1,1 @@
+export { PriceContent } from "./ui";

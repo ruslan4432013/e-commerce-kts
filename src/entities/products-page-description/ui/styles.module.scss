@@ -1,0 +1,32 @@
+@use 'src/styles' as *;
+
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  @include mobile {
+    padding-top: 50px;
+    padding-bottom: 32px;
+  }
+  @include desktop {
+    padding-top: 100px;
+    padding-bottom: 79px;
+  }
+}
+
+.title {
+  @include heading1;
+  margin-bottom: 20px;
+
+}
+
+.description {
+  @include paragraph3;
+  color: var(--secondary-color);
+  max-width: 600px;
+  @include mobile {
+    line-height: 25px;
+  }
+}

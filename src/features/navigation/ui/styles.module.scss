@@ -1,0 +1,76 @@
+@use 'src/styles' as *;
+
+@mixin active_link {
+  color: var(--primary-color);
+  border-bottom: 3px solid var(--primary-color);
+}
+
+.root {
+  border-bottom: 1.5px solid var(--light-grey);
+  @include mobile {
+    height: 72px;
+  }
+  @include desktop {
+    height: 120px;
+  }
+}
+
+.navigation_wrapper {
+  @include container;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu_icon_wrapper {
+  @include desktop {
+    display: none;
+  }
+}
+
+.user_bag_icon_wrapper {
+  @include mobile {
+    display: none;
+  }
+  @include desktop {
+    display: flex;
+    gap: 24px;
+  }
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.nav {
+  height: 100%;
+}
+
+.links {
+  height: 100%;
+  @include mobile {
+    display: none;
+  }
+  @include desktop {
+    display: flex;
+    gap: 60px;
+  }
+}
+
+.link {
+  height: 100%;
+  display: flex;
+  box-sizing: border-box;
+  list-style-type: none;
+  align-items: center;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+
+  &:hover {
+    @include active_link;
+  }
+  &.active {
+    @include active_link;
+  }
+}

@@ -1,0 +1,9 @@
+@use 'src/styles' as *;
+
+.root {
+  position: relative;
+}
+
+.loader {
+  @include center-both
+}

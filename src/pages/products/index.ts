@@ -1,0 +1,1 @@
+export { ProductsPage } from "./ui";

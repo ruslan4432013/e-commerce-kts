@@ -1,0 +1,38 @@
+.button {
+  color: var(--light-color);
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 28px;
+  box-sizing: border-box;
+  border: none;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 130%;
+  cursor: pointer;
+
+  &:hover {
+    opacity: .7;
+  }
+
+  &:disabled {
+    opacity: 1;
+  }
+
+
+  .loader > div {
+    border-color: var(--light-color);
+    border-bottom-color: transparent;
+  }
+}
+
+.button_disabled {
+  background: var(--gray-color);
+}
+
+.button_load {
+  padding: 15px 22px 15px 19px
+}
