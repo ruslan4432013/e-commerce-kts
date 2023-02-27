@@ -1,6 +1,6 @@
-import { ProductsPageDescription } from "@entities/products-page-description";
 import { Navigation } from "@features/navigation";
 import { SearchBar } from "@features/search-bar";
+import { ProductsPageDescription } from "@widgets/products-page-description";
 
 import s from "./styles.module.scss";
 
