@@ -7,15 +7,6 @@ body {
   @include text-regular;
   line-height: 180%;
   font-family: 'Eudoxus Sans', sans-serif;
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
 }
 
 a {
