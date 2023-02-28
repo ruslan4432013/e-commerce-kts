@@ -24,7 +24,8 @@
 
 .search {
   &_bar {
-    @include relative();
+    @include relative;
+    @include shadow-medium;
     @include mobile {
       max-height: 54px;
     }
