@@ -55,7 +55,13 @@ export class ProductListStore implements ILocalStore {
     this._meta = meta;
   }
 
-  public async load(params: GetProductsListParams) {
+  public async load(outParams: GetProductsListParams) {
+    const { categoryId, title, ...other } = outParams;
+    const params: GetProductsListParams = {
+      ...(categoryId && { categoryId }),
+      ...(title && { title }),
+      ...other,
+    };
     this._setMeta(Meta.LOADING);
     try {
       if (!params.limit) {
