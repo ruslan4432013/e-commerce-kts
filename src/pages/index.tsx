@@ -7,9 +7,6 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <ProductsPage />,
-    loader: async () => {
-      return await productsApi.getProductsList();
-    },
   },
   {
     path: "/product/:productId",
