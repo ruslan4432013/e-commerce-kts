@@ -12,6 +12,8 @@
     "@types/react-dom": "^18.0.0",
     "axios": "^1.3.3",
     "classnames": "^2.3.2",
+    "mobx": "^6.8.0",
+    "mobx-react-lite": "^3.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-infinite-scroll-component": "^6.1.0",

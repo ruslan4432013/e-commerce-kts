@@ -6,6 +6,8 @@ const BASE_URL = "/products";
 export type GetProductsListParams = {
   offset?: number;
   limit?: number;
+  title?: string | null;
+  categoryId?: string | null;
 };
 
 export const getProductsList = (

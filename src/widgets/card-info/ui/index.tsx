@@ -1,13 +1,19 @@
+import { productModel } from "@entities/product";
 import { ProductSlider } from "@entities/products-slider";
-import { Product } from "@shared/api";
+import { Meta } from "@shared/api";
 import { Button } from "@shared/ui/button";
 import cn from "classnames";
-import { useLoaderData } from "react-router-dom";
+import { observer } from "mobx-react-lite";
 
 import s from "./styles.module.scss";
 
-export const CardInfo = () => {
-  const product = useLoaderData() as Product;
+export const CardInfo = observer(() => {
+  const { product, meta } = productModel.useProductStore();
+
+  if (!product || meta === Meta.LOADING) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className={s.root}>
       <div className={s.left_block}>
@@ -28,4 +34,4 @@ export const CardInfo = () => {
       </div>
     </div>
   );
-};
+});

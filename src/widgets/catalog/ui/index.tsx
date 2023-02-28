@@ -1,40 +1,13 @@
-import { useEffect, useState } from "react";
-
 import { PriceContent } from "@entities/price-content";
-import { Product, productsApi } from "@shared/api";
+import { productModel } from "@entities/product";
 import { Card } from "@shared/ui/card";
+import { observer } from "mobx-react-lite";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import s from "./styles.module.scss";
 
-const PRODUCTS_LIMIT = 10;
-
-export const Catalog = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [hasMore, setHasMore] = useState(true);
-
-  const fetchProducts = async () => {
-    const offset = products.length + PRODUCTS_LIMIT;
-    const productsResponse = await productsApi.getProductsList({
-      limit: PRODUCTS_LIMIT,
-      offset,
-    });
-
-    if (productsResponse.length < PRODUCTS_LIMIT) {
-      setHasMore(false);
-    }
-
-    setProducts((prev) => [...prev, ...productsResponse]);
-  };
-
-  useEffect(() => {
-    productsApi
-      .getProductsList({
-        limit: PRODUCTS_LIMIT,
-        offset: 0,
-      })
-      .then((res) => setProducts(res));
-  }, []);
+export const Catalog = observer(() => {
+  const { products, loadMore, hasMore } = productModel.useProductListStore();
 
   return (
     <main className={s.root}>
@@ -44,7 +17,7 @@ export const Catalog = () => {
       </div>
 
       <InfiniteScroll
-        next={fetchProducts}
+        next={loadMore}
         hasMore={hasMore}
         loader={<h3>Loading...</h3>}
         dataLength={products.length}
@@ -65,4 +38,4 @@ export const Catalog = () => {
       </InfiniteScroll>
     </main>
   );
-};
+});
