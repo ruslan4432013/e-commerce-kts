@@ -8,7 +8,6 @@ import { Pagination } from "@shared/ui/pagination";
 import { useLoaderData } from "react-router-dom";
 
 import s from "./styles.module.scss";
-import { truncateText } from "../lib";
 
 const DESKTOP_MAX_CARDS = 9;
 const MOBILE_MAX_CARDS = 10;
@@ -19,14 +18,6 @@ export const Catalog = () => {
   const isDesktop = useIsDesktopQuery();
 
   const maxItems = isDesktop ? DESKTOP_MAX_CARDS : MOBILE_MAX_CARDS;
-
-  const getProductTitle = (title: string) => {
-    return isDesktop ? truncateText(title, 28) : truncateText(title, 20);
-  };
-
-  const getProductDesc = (desc: string) => {
-    return isDesktop ? truncateText(desc, 28) : truncateText(desc, 25);
-  };
 
   const totalPages = (): number => {
     return Math.ceil(products.length / maxItems);
@@ -49,9 +40,9 @@ export const Catalog = () => {
             key={product.id}
             id={product.id}
             image={product.images[0]}
-            title={getProductTitle(product.title)}
+            title={product.title}
             division={product.category.name}
-            subtitle={getProductDesc(product.description)}
+            subtitle={product.description}
             content={<PriceContent price={product.price} />}
           />
         ))}
