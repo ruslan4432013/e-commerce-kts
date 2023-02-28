@@ -24,7 +24,7 @@
 
 .search {
   &_bar {
-    @include relative;
+    position: relative;
     @include shadow-medium;
     @include mobile {
       max-height: 54px;
@@ -36,7 +36,7 @@
   }
 
   &_icon {
-    @include center-vertical;
+    @include center-Y;
 
     @include mobile {
       height: 24px;
@@ -53,7 +53,7 @@
   &_button {
     line-height: 130%;
     @include heading5;
-    @include center-vertical;
+    @include center-Y;
     @include mobile {
       max-height: 38px;
       padding: 10px 18px;
@@ -79,7 +79,7 @@
 }
 
 .filter {
-  @include relative();
+  position: relative;
 
   button {
     @include filter_button_font;

@@ -22,7 +22,7 @@
     border-radius: 50%;
 
     @include shadow-small;
-    @include center-vertical;
+    @include center-Y;
 
     padding: 10px;
 
