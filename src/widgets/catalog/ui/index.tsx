@@ -16,14 +16,13 @@ export const Catalog = observer(() => {
         <h2 className={s.description_title}>Total Products</h2>
         <div className={s.description_badge}>{products.length}</div>
       </div>
-
-      <InfiniteScroll
-        next={loadMore}
-        hasMore={hasMore}
-        loader={<h3>Loading...</h3>}
-        dataLength={products.length}
-      >
-        <ul className={s.product_list__container}>
+      <ul className={s.product_list__container}>
+        <InfiniteScroll
+          next={loadMore}
+          hasMore={hasMore}
+          loader={<h3>Loading...</h3>}
+          dataLength={products.length}
+        >
           {products.map((product) => (
             <Card
               key={product.id}
@@ -35,8 +34,8 @@ export const Catalog = observer(() => {
               content={<PriceContent price={product.price} />}
             />
           ))}
-        </ul>
-      </InfiniteScroll>
+        </InfiniteScroll>
+      </ul>
     </main>
   );
 });
