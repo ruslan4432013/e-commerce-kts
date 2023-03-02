@@ -1,3 +1,4 @@
+import type { ProductPageStore } from "@features/product-session";
 import { Meta, Product, productsApi } from "@shared/api";
 import { GetProductsListParams } from "@shared/api/products";
 import { collection, CollectionModel, ILocalStore } from "@shared/lib";
@@ -6,18 +7,25 @@ import { makeAutoObservable, runInAction } from "mobx";
 
 const PRODUCTS_LIMIT = 10;
 
+type PrivateFields = "root";
+
 export class ProductListStore implements ILocalStore {
   private _meta: Meta = Meta.INITIAL;
   private _list: CollectionModel<number, Product> = getInitialCollectionModel();
 
   private _qParam = "";
 
-  private _categoryId: null | string = null;
-
   private _hasMore = true;
 
-  constructor() {
-    makeAutoObservable(this, {}, { autoBind: true, deep: false });
+  private root: ProductPageStore;
+
+  constructor(root: ProductPageStore) {
+    makeAutoObservable<this, PrivateFields>(
+      this,
+      { root: false },
+      { autoBind: true, deep: false }
+    );
+    this.root = root;
   }
 
   get meta() {
@@ -30,10 +38,6 @@ export class ProductListStore implements ILocalStore {
 
   get products() {
     return collection.linearizeCollection(this._list);
-  }
-
-  public setCategoryId(categoryId?: string | null) {
-    this._categoryId = categoryId || null;
   }
 
   public setTitle(title: string) {
@@ -88,15 +92,6 @@ export class ProductListStore implements ILocalStore {
     }
   }
 
-  public init() {
-    const offset = 0;
-    const limit = PRODUCTS_LIMIT;
-    const title = this._qParam;
-    const categoryId = this._categoryId;
-    this.clearList();
-    this.load({ offset, limit, title, categoryId });
-  }
-
   public clearList() {
     this._list = collection.getInitialCollectionModel();
   }
@@ -110,7 +105,8 @@ export class ProductListStore implements ILocalStore {
     const limit = PRODUCTS_LIMIT;
     const offset = this._list.order.length + PRODUCTS_LIMIT;
     const title = this._qParam || null;
-    const categoryId = this._categoryId || null;
+    const category = this.root.categoryStore.currentCategory || null;
+    const categoryId = category ? `${category.id}` : null;
     await this.load({ limit, offset, title, categoryId });
   }
 }

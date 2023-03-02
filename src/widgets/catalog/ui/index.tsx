@@ -1,5 +1,5 @@
 import { PriceContent } from "@entities/price-content";
-import { productModel } from "@entities/product";
+import { productSessionModel } from "@features/product-session";
 import { Card } from "@shared/ui/card";
 import { observer } from "mobx-react-lite";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -7,7 +7,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import s from "./styles.module.scss";
 
 export const Catalog = observer(() => {
-  const { products, loadMore, hasMore } = productModel.useProductListStore();
+  const { products, loadMore, hasMore } =
+    productSessionModel.useProductListStore();
 
   return (
     <main className={s.root}>

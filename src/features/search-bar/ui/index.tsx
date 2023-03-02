@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 
-import { categoryModel } from "@entities/category";
-import { productModel } from "@entities/product";
+import { productSessionModel } from "@features/product-session";
 import { Meta } from "@shared/api";
 import { useDebounce } from "@shared/lib/hooks";
 import { Button } from "@shared/ui/button";
@@ -25,10 +24,9 @@ export const SearchBar = observer(() => {
   const search = searchParams.get("q") || "";
   const categoryId = searchParams.get("categoryId") || "";
   const query = useDebounce(search, 1000);
-  const { load, meta, setTitle, setCategoryId } =
-    productModel.useProductListStore();
+  const { load, meta, setTitle } = productSessionModel.useProductListStore();
   const { categories, setCurrentCategory, currentCategory } =
-    categoryModel.useCategoryListStore();
+    productSessionModel.useCategoryListStore();
   const queryParams: QParams = {
     q: search,
     categoryId,
@@ -55,7 +53,6 @@ export const SearchBar = observer(() => {
   useEffect(() => {
     if (!Number.isNaN(+categoryId)) {
       setCurrentCategory(+categoryId);
-      setCategoryId(categoryId);
     }
   }, [categories, categoryId, setCurrentCategory]);
 
@@ -72,14 +69,12 @@ export const SearchBar = observer(() => {
     if (option.length > 0 && !Number.isNaN(+option[0]!.key)) {
       const categoryId = option[0]!.key;
       setCurrentCategory(+categoryId);
-      setCategoryId(`${categoryId}`);
       setSearchParams({
         ...(queryParams.q && { q: queryParams.q }),
         categoryId: `${categoryId}`,
       });
     } else {
       setCurrentCategory(null);
-      setCategoryId(null);
       const params = queryParams.q ? { q: queryParams.q } : undefined;
       setSearchParams(params);
     }

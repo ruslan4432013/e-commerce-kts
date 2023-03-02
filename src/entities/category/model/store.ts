@@ -1,3 +1,4 @@
+import type { ProductPageStore } from "@features/product-session";
 import { Category, Meta, categoryApi } from "@shared/api";
 import {
   type ILocalStore,
@@ -7,6 +8,8 @@ import {
 } from "@shared/lib";
 import { makeAutoObservable, runInAction } from "mobx";
 
+type PrivateFields = "root";
+
 export class CategoryListStore implements ILocalStore {
   private _meta: Meta = Meta.INITIAL;
 
@@ -15,8 +18,15 @@ export class CategoryListStore implements ILocalStore {
 
   private _currentCategory: null | Category = null;
 
-  constructor() {
-    makeAutoObservable(this, {}, { autoBind: true, deep: false });
+  private root: ProductPageStore;
+  constructor(root: ProductPageStore) {
+    makeAutoObservable<this, PrivateFields>(
+      this,
+      { root: false },
+      { autoBind: true, deep: false }
+    );
+    this.root = root;
+    this.init();
   }
 
   get meta() {
