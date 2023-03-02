@@ -55,12 +55,12 @@
     justify-content: center;
     @include mobile {
       margin-top: 21.5px;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(2, 45%);
       gap: 15px;
     }
     @include desktop {
       margin-top: 50px;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(3, 31%);
       gap: 29px;
     }
   }
