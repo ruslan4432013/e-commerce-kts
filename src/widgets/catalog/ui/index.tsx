@@ -16,6 +16,7 @@ export const Catalog = observer(() => {
         <h2 className={s.description_title}>Total Products</h2>
         <div className={s.description_badge}>{products.length}</div>
       </div>
+
       <ul className={s.product_list__container}>
         <InfiniteScroll
           next={loadMore}
