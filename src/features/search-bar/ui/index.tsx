@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { productSessionModel } from "@features/product-session";
 import { Meta } from "@shared/api";
-import { useDebounce } from "@shared/lib/hooks";
+import { hooks } from "@shared/lib";
 import { Button } from "@shared/ui/button";
 import { Input } from "@shared/ui/input";
 import { MultiDropdown, type Option } from "@shared/ui/multi-dropdown";
@@ -22,8 +22,8 @@ type QParams = {
 export const SearchBar = observer(() => {
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get("q") || "";
+  const query = hooks.useDebounce(search, 1000);
   const categoryId = searchParams.get("categoryId") || "";
-  const query = useDebounce(search, 1000);
   const { load, meta, setTitle } = productSessionModel.useProductListStore();
   const { categories, setCurrentCategory, currentCategory } =
     productSessionModel.useCategoryListStore();
@@ -66,16 +66,18 @@ export const SearchBar = observer(() => {
       option = [];
     }
 
+    const { q } = queryParams;
+    // Если какая-то из категорий выбрана
     if (option.length > 0 && !Number.isNaN(+option[0]!.key)) {
       const categoryId = option[0]!.key;
       setCurrentCategory(+categoryId);
       setSearchParams({
-        ...(queryParams.q && { q: queryParams.q }),
+        ...(q && { q }),
         categoryId: `${categoryId}`,
       });
     } else {
       setCurrentCategory(null);
-      const params = queryParams.q ? { q: queryParams.q } : undefined;
+      const params = q ? { q } : undefined;
       setSearchParams(params);
     }
   };
