@@ -5,13 +5,13 @@
   transform: translate(-50%, -50%);
 }
 
-@mixin center-vertical {
+@mixin center-Y {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
 }
 
-@mixin center-horizontal {
+@mixin center-X {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);

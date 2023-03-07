@@ -3,8 +3,17 @@ import { apiInstance } from "../base";
 
 const BASE_URL = "/products";
 
-export const getProductsList = (): Promise<Product[]> => {
-  return apiInstance.get(BASE_URL);
+export type GetProductsListParams = {
+  offset?: number;
+  limit?: number;
+  title?: string | null;
+  categoryId?: string | null;
+};
+
+export const getProductsList = (
+  params?: GetProductsListParams
+): Promise<Product[]> => {
+  return apiInstance.get(BASE_URL, { params });
 };
 
 export type GetTaskByIdParams = {

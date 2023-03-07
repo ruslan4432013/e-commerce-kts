@@ -6,7 +6,7 @@ import s from "./styles.module.scss";
 
 export type Option = {
   /** Ключ варианта, используется для отправки на бек/использования в коде */
-  key: string;
+  key: string | number;
   /** Значение варианта, отображается пользователю */
   value: string;
 };
@@ -35,6 +35,8 @@ export const MultiDropdown: FC<MultiDropdownProps> = (props) => {
     height: isOpen && !disabled ? getDropdownMenuHeight(50, options.length) : 0,
   };
 
+  const keySet = new Set(value.map((val) => val.key));
+
   const handleDropdownClick = () => {
     if (!disabled) {
       setIsOpen((prev) => !prev);
@@ -42,8 +44,8 @@ export const MultiDropdown: FC<MultiDropdownProps> = (props) => {
   };
 
   const handleOptionClick = (option: Option) => () => {
-    const newValue = value.includes(option)
-      ? value.filter((v) => v !== option)
+    const newValue = keySet.has(option.key)
+      ? value.filter((v) => !keySet.has(v.key))
       : [...value, option];
     onChange(newValue);
   };
@@ -60,27 +62,25 @@ export const MultiDropdown: FC<MultiDropdownProps> = (props) => {
       >
         {pluralizeOptions(value)}
       </button>
-      {isOpen && !disabled && (
-        <ul
-          style={dropdownMenuStyle}
-          className={s.dropdown_menu}
-          role={"menuitem"}
-          aria-expanded="false"
-          aria-labelledby="multiDropdownMenuButton"
-        >
-          {options.map((option) => (
-            <li
-              key={option.key}
-              onClick={handleOptionClick(option)}
-              className={cn(s.dropdown_menu_item, {
-                [s.dropdown_menu_item__active]: value.includes(option),
-              })}
-            >
-              {option.value}
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul
+        style={dropdownMenuStyle}
+        className={s.dropdown_menu}
+        role={"menuitem"}
+        aria-expanded="false"
+        aria-labelledby="multiDropdownMenuButton"
+      >
+        {options.map((option) => (
+          <li
+            key={option.key}
+            onClick={handleOptionClick(option)}
+            className={cn(s.dropdown_menu_item, {
+              [s.dropdown_menu_item__active]: keySet.has(option.key),
+            })}
+          >
+            {option.value}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-@use 'src/styles' as *;
+@use 'src/shared/styles' as *;
 
 .root {
   @include container;
@@ -50,17 +50,17 @@
 }
 
 .product_list {
-  &__container {
+  &__container :global(.infinite-scroll-component) {
     display: grid;
-
+    justify-content: center;
     @include mobile {
       margin-top: 21.5px;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 45%);
       gap: 15px;
     }
     @include desktop {
       margin-top: 50px;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, 31%);
       gap: 29px;
     }
   }
