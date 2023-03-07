@@ -7,7 +7,7 @@ import { makeAutoObservable, runInAction } from "mobx";
 
 const PRODUCTS_LIMIT = 10;
 
-type PrivateFields = "root";
+type PrivateFields = "_root";
 
 export class ProductListStore implements ILocalStore {
   private _meta: Meta = Meta.INITIAL;
@@ -17,15 +17,12 @@ export class ProductListStore implements ILocalStore {
 
   private _hasMore = true;
 
-  private root: ProductPageStore;
-
-  constructor(root: ProductPageStore) {
+  constructor(private _root: ProductPageStore) {
     makeAutoObservable<this, PrivateFields>(
       this,
-      { root: false },
+      { _root: false },
       { autoBind: true, deep: false }
     );
-    this.root = root;
   }
 
   get meta() {
@@ -96,16 +93,13 @@ export class ProductListStore implements ILocalStore {
     this._list = collection.getInitialCollectionModel();
   }
 
-  public destroy() {
-    this._qParam = "";
-    this.clearList();
-  }
+  public destroy() {}
 
   public async loadMore() {
     const limit = PRODUCTS_LIMIT;
     const offset = this._list.order.length + PRODUCTS_LIMIT;
     const title = this._qParam || null;
-    const category = this.root.categoryStore.currentCategory || null;
+    const category = this._root.categoryStore.currentCategory || null;
     const categoryId = category ? `${category.id}` : null;
     await this.load({ limit, offset, title, categoryId });
   }

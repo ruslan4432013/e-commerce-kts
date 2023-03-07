@@ -21,6 +21,7 @@ export class ProductDetailedStore implements ILocalStore {
   }
 
   public async load(productId: string | number) {
+    if (this._meta === Meta.LOADING) return;
     this.setMeta(Meta.LOADING);
     try {
       const productResponse = await productsApi.getProductById({ productId });

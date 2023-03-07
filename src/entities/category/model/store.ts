@@ -1,14 +1,14 @@
 import type { ProductPageStore } from "@features/product-session";
-import { Category, Meta, categoryApi } from "@shared/api";
+import { Category, categoryApi, Meta } from "@shared/api";
 import {
-  type ILocalStore,
   collection,
   type CollectionModel,
   filterUniqueByKey,
+  type ILocalStore,
 } from "@shared/lib";
 import { makeAutoObservable, runInAction } from "mobx";
 
-type PrivateFields = "root";
+type PrivateFields = "_root";
 
 export class CategoryListStore implements ILocalStore {
   private _meta: Meta = Meta.INITIAL;
@@ -18,14 +18,12 @@ export class CategoryListStore implements ILocalStore {
 
   private _currentCategory: null | Category = null;
 
-  private root: ProductPageStore;
-  constructor(root: ProductPageStore) {
+  constructor(private _root: ProductPageStore) {
     makeAutoObservable<this, PrivateFields>(
       this,
-      { root: false },
+      { _root: false },
       { autoBind: true, deep: false }
     );
-    this.root = root;
     this.init();
   }
 
@@ -42,14 +40,13 @@ export class CategoryListStore implements ILocalStore {
   }
 
   public setCurrentCategory(categoryId: number | null) {
-    if (categoryId) {
-      this._currentCategory = this._categories.entities[categoryId];
-    } else {
-      this._currentCategory = null;
-    }
+    this._currentCategory = categoryId
+      ? this._categories.entities[categoryId]
+      : null;
   }
 
   public async load() {
+    if (this._meta === Meta.LOADING) return;
     this.setMeta(Meta.LOADING);
     try {
       const categoryResponse = await categoryApi.getCategoryList();
@@ -73,7 +70,5 @@ export class CategoryListStore implements ILocalStore {
     this._meta = meta;
   }
 
-  destroy(): void {
-    this._categories = collection.getInitialCollectionModel();
-  }
+  destroy(): void {}
 }
