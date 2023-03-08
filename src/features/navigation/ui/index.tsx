@@ -1,11 +1,11 @@
 import cn from "classnames";
 import { Link } from "react-router-dom";
 
-import { ReactComponent as BagIcon } from "./bag-2.svg";
-import { ReactComponent as Logo } from "./logo.svg";
-import { ReactComponent as MenuIcon } from "./menu.svg";
+import BagIcon from "./bag-2.svg";
+import Logo from "./logo.svg";
+import MenuIcon from "./menu.svg";
 import s from "./styles.module.scss";
-import { ReactComponent as UserIcon } from "./user.svg";
+import UserIcon from "./user.svg";
 
 export const Navigation = () => {
   return (

@@ -17,12 +17,15 @@ export class ProductListStore implements ILocalStore {
 
   private _hasMore = true;
 
-  constructor(private _root: ProductPageStore) {
+  private _root: ProductPageStore;
+
+  constructor(root: ProductPageStore) {
     makeAutoObservable<this, PrivateFields>(
       this,
       { _root: false },
       { autoBind: true, deep: false }
     );
+    this._root = root;
   }
 
   get meta() {

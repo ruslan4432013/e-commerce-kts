@@ -2,7 +2,7 @@ import { FC, useEffect, useRef, useState } from "react";
 
 import { Slide } from "@entities/products-slider/ui/slide";
 import { SliderContent } from "@entities/products-slider/ui/slider-content";
-import { ReactComponent as ArrowIcon } from "@shared/assets/icons/arrow.svg";
+import ArrowIcon from "@shared/assets/icons/arrow.svg";
 import cn from "classnames";
 
 import s from "./styles.module.scss";
@@ -15,7 +15,6 @@ export const ProductSlider: FC<SliderProps> = ({ images }) => {
   const [width, setWidth] = useState(window.innerWidth);
   const getWidth = () => width;
   const parentRef = useRef<HTMLDivElement | null>(null);
-
   useEffect(() => {
     const setInnerWidth = () => {
       const parentWidth = parentRef.current?.offsetWidth || 375;

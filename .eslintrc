@@ -1,8 +1,18 @@
 {
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    }
+  },
   "extends": [
     "react-app",
     "plugin:prettier/recommended"
   ],
+  "env": {
+    "es6": true,
+    "browser": true
+  },
   "plugins": [
     "prettier"
   ],
