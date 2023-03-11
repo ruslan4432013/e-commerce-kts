@@ -1,3 +1,6 @@
+import * as webpack from "webpack";
+import "webpack-dev-server";
+
 const path = require("path");
 
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
@@ -9,23 +12,29 @@ const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserWebpackPlugin = require("terser-webpack-plugin");
-
 const buildPath = path.resolve(__dirname, "dist");
 const srcPath = path.resolve(__dirname, "src");
-const contentPath = path.resolve(__dirname, "public");
+const contentPath: string = path.resolve(__dirname, "public");
 
 const isProd = process.env.NODE_ENV === "production";
 const isDev = !isProd;
 
-const optimization = () => {
+const optimization = (): webpack.Configuration["optimization"] => {
   const config = {
     splitChunks: {
-      chunks: "all",
+      cacheGroups: {
+        vendor: {
+          name: "vendors",
+          test: /[\\/]node_modules[\\/]/,
+          chunks: "all" as const,
+        },
+      },
     },
+    minimizer: [
+      ...(isProd ? [new CssMinimizerPlugin(), new TerserWebpackPlugin()] : []),
+    ],
   };
-  if (isProd) {
-    config.minimizer = [new CssMinimizerPlugin(), new TerserWebpackPlugin()];
-  }
+
   return config;
 };
 
@@ -54,9 +63,10 @@ const getSettingsForStyles = (withModules = false) => {
   ];
 };
 
-const filename = (ext) => (isDev ? `[name].${ext}` : `[name].[hash].${ext}`);
+const filename = (ext: string) =>
+  isDev ? `[name].${ext}` : `[name].[contenthash].${ext}`;
 
-module.exports = {
+const config: webpack.Configuration = {
   entry: path.join(srcPath, "index.tsx"),
   target: isProd ? "browserslist" : "web",
   devtool: isProd ? "hidden-source-map" : "eval-source-map",
@@ -139,3 +149,5 @@ module.exports = {
     historyApiFallback: true,
   },
 };
+
+module.exports = config;

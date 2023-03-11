@@ -6,12 +6,17 @@
     "strict": true,
     "strictNullChecks": true,
     "skipLibCheck": true,
-    "module": "es6",
+    "module": "ESNext",
     "target": "es6",
     "moduleResolution": "node",
     "jsx": "react-jsx",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
   },
   "include": [
     "src/**/*"
