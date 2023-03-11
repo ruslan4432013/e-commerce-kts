@@ -1,19 +1,19 @@
-import React from "react";
+import * as React from "react";
 
 import ReactDOM from "react-dom/client";
-import "regenerator-runtime";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { App } from "./app";
+import { routes } from "./app";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+hydrate();
 
-if (module.hot) {
-  module.hot.accept();
+async function hydrate() {
+  let router = createBrowserRouter(routes);
+
+  ReactDOM.hydrateRoot(
+    document.getElementById("app")!,
+    <React.StrictMode>
+      <RouterProvider router={router} fallbackElement={null} />
+    </React.StrictMode>
+  );
 }

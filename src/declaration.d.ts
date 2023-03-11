@@ -1,14 +1,16 @@
-declare module "*.scss" {
-  const content: Record<string, string>;
-  export default content;
+declare module "*.module.css";
+declare module "*.module.scss";
+
+declare module "*.jpg";
+declare module "*.png";
+declare module "*.jpeg";
+declare module "*.gif";
+
+declare module "*.svg";
+declare module "*.svg?url";
+declare module "*.svg?base64";
+interface Window {
+  __PRELOADED_STATE__: any;
 }
 
-declare module "*.png" {
-  const content: string;
-  export default content;
-}
-
-declare module "*.svg" {
-  const content: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
-  export default content;
-}
+declare const NO_SSR: boolean;
