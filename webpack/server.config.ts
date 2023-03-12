@@ -1,9 +1,8 @@
 import path from "path";
 
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import webpack, { Configuration } from "webpack";
+import { Configuration } from "webpack";
 import nodeExternals from "webpack-node-externals";
 
 import {
@@ -12,8 +11,11 @@ import {
   IS_DEV,
   SERVER_BUNDLE_NAME,
   SERVER_SRC_DIR,
+  SRC_DIR,
 } from "./constants";
 import * as Loaders from "./loaders";
+
+const CopyPlugin = require("copy-webpack-plugin");
 
 const serverConfig: Configuration = {
   name: "server",
@@ -21,10 +23,14 @@ const serverConfig: Configuration = {
   node: { __dirname: false },
   entry: path.join(SERVER_SRC_DIR, "/server"),
   plugins: [
-    new webpack.ProvidePlugin({
-      React: "react",
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(SRC_DIR, "assets/images"),
+          to: DIST_DIR,
+        },
+      ],
     }),
-    new CleanWebpackPlugin(),
     new ForkTsCheckerWebpackPlugin(),
     new MiniCssExtractPlugin(),
   ],
@@ -39,7 +45,7 @@ const serverConfig: Configuration = {
   devtool: IS_DEV ? "source-map" : false,
   resolve: {
     alias: ALIAS,
-    extensions: [".ts", ".tsx", ".js"],
+    extensions: [".ts", ".tsx", ".js", ".scss"],
   },
   externals: [nodeExternals()],
 };

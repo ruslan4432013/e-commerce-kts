@@ -13,7 +13,6 @@ const SERVER_SRC_DIR: string = path.join(__dirname, "../src/server");
 const SERVER_BUNDLE_NAME: string = "server";
 
 const ALIAS: Record<string, string> = {
-  "@api": `${SRC_DIR}/api`,
   "@server": `${SRC_DIR}/server`,
   "@src": `${SRC_DIR}`,
   "@shared": `${SRC_DIR}/shared`,
@@ -22,6 +21,7 @@ const ALIAS: Record<string, string> = {
   "@pages": `${SRC_DIR}/pages`,
   "@features": `${SRC_DIR}/features`,
   "@widgets": `${SRC_DIR}/widgets`,
+  "@styles": `${SRC_DIR}/shared/styles/index.scss`,
   _webpack: path.join(__dirname, "../webpack"),
 };
 
@@ -30,7 +30,6 @@ if (IS_PREACT) {
     react: "preact/compat",
     "react-dom": "preact/compat",
     "react-dom/test-utils": "preact/test-utils",
-    "@testing-library/react": "@testing-library/preact",
   });
 }
 

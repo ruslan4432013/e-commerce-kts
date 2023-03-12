@@ -16,11 +16,9 @@ export const getHtmlTemplate = (props: {
       <html lang="en">
         <head>
             <meta charset="UTF-8">
+            <link rel="icon" href="./favicon.svg" />
             <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-            <meta property="csp-nonce" content="${props.nonce}">
             ${props.styleTags}
-            ${props.helmetData.title.toString()}
-            ${props.helmetData.meta.toString()}
         </head>
         <body>
           <noscript>

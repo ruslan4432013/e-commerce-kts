@@ -2,7 +2,6 @@ import path from "path";
 
 import LoadablePlugin from "@loadable/webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import CssoWebpackPlugin from "csso-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
@@ -13,11 +12,12 @@ import {
   WebpackPluginInstance,
   DefinePlugin,
 } from "webpack";
-import webpack from "webpack";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 
 import { ALIAS, DEV_SERVER_PORT, DIST_DIR, IS_DEV, SRC_DIR } from "./constants";
 import * as Loaders from "./loaders";
+
+const CopyPlugin = require("copy-webpack-plugin");
 
 const withReport = Boolean(process.env.npm_config_withReport);
 
@@ -37,8 +37,8 @@ const filename = (ext: string): string =>
   IS_DEV ? `[name].${ext}` : `[name].[chunkhash].${ext}`;
 
 const plugins: WebpackPluginInstance[] = [
-  new webpack.ProvidePlugin({
-    React: "react",
+  new CopyPlugin({
+    patterns: [{ from: path.resolve(SRC_DIR, "assets/images"), to: DIST_DIR }],
   }),
   new DefinePlugin({
     NO_SSR: process.env.NO_SSR === "true",
@@ -46,12 +46,12 @@ const plugins: WebpackPluginInstance[] = [
   ...(process.env.NO_SSR === "true"
     ? [
         new HtmlWebpackPlugin({
+          title: "My App",
           template: "./src/assets/index.html",
         }),
       ]
     : []),
   new ForkTsCheckerWebpackPlugin(),
-  new CleanWebpackPlugin(),
   new MiniCssExtractPlugin({
     filename: IS_DEV ? "[name].css" : "[name].[contenthash].css",
   }),
@@ -65,7 +65,7 @@ const plugins: WebpackPluginInstance[] = [
         new CssoWebpackPlugin(),
         new BundleAnalyzerPlugin({
           analyzerMode: withReport ? "server" : "disabled",
-        }) as unknown as { apply(): void },
+        }) as unknown as WebpackPluginInstance,
       ]),
 ];
 
