@@ -71,6 +71,7 @@ export class ProductListStore implements ILocalStore {
       if (!params.limit) {
         params.limit = PRODUCTS_LIMIT;
       }
+
       const productsResponse = await productsApi.getProductsList(params);
       runInAction(() => {
         if (productsResponse.length < PRODUCTS_LIMIT) {
@@ -78,6 +79,7 @@ export class ProductListStore implements ILocalStore {
         } else {
           this._setHasMore(true);
         }
+
         if (!params.offset || params.offset === 0) {
           this._setProducts(productsResponse);
         } else {

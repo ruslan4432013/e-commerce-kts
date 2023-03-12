@@ -42,17 +42,18 @@ export const SearchBar = observer(() => {
     const q = val || null;
     const categoryId = queryParams.categoryId || null;
 
-    let params: undefined | Record<string, string> = undefined;
+    let params: undefined | Record<string, string>;
     if (q || categoryId) {
-      // чтобы добавлять переменную в объект, только если она существует
+      // Чтобы добавлять переменную в объект, только если она существует
       params = { ...(q && { q }), ...(categoryId && { categoryId }) };
     }
+
     setSearchParams(params);
   };
 
   useEffect(() => {
-    if (!Number.isNaN(+categoryId)) {
-      setCurrentCategory(+categoryId);
+    if (!Number.isNaN(Number(categoryId))) {
+      setCurrentCategory(Number(categoryId));
     }
   }, [categories, categoryId, setCurrentCategory]);
 
@@ -68,9 +69,9 @@ export const SearchBar = observer(() => {
 
     const { q } = queryParams;
     // Если какая-то из категорий выбрана
-    if (option.length > 0 && !Number.isNaN(+option[0]!.key)) {
+    if (option.length > 0 && !Number.isNaN(Number(option[0]!.key))) {
       const categoryId = option[0]!.key;
-      setCurrentCategory(+categoryId);
+      setCurrentCategory(Number(categoryId));
       setSearchParams({
         ...(q && { q }),
         categoryId: `${categoryId}`,

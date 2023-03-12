@@ -1,25 +1,16 @@
-import * as React from "react";
-
 import { ChunkExtractor } from "@loadable/server";
-import { createStaticHandler } from "@remix-run/router";
 import { IS_RENDER_TO_STREAM } from "@server/constants";
 import { getHtmlTemplate } from "@server/template";
-import { routes } from "@src/app";
-import { ROUTE_CONSTANTS } from "@src/shared/config";
-import { Request as ExRequest, Response, RequestHandler } from "express";
-import type * as express from "express";
+import { ROUTE_CONSTANTS } from "@shared/config";
+import { App } from "@src/app";
+import { Request, Response, RequestHandler } from "express";
 import { renderToPipeableStream, renderToString } from "react-dom/server";
-import ReactDOMServer from "react-dom/server";
 import { HelmetProvider, FilledContext } from "react-helmet-async";
 import { StaticRouter } from "react-router-dom/server";
-import {
-  createStaticRouter,
-  StaticRouterProvider,
-} from "react-router-dom/server";
 
 const serverRenderer =
   (chunkExtractor: ChunkExtractor): RequestHandler =>
-  async (req: ExRequest, res: Response) => {
+  async (req: Request, res: Response) => {
     const isPageAvailable = (
       Object.values(ROUTE_CONSTANTS) as string[]
     ).includes(req.path);
@@ -27,8 +18,19 @@ const serverRenderer =
     if (!isPageAvailable) {
       req.url = ROUTE_CONSTANTS.NOT_FOUND;
     }
+
+    const location: string = req.url;
+
     const helmetContext = {};
-    const jsx = await render(req);
+
+    const jsx = (
+      <HelmetProvider context={helmetContext}>
+        <StaticRouter location={location}>
+          <App />
+        </StaticRouter>
+      </HelmetProvider>
+    );
+
     if (IS_RENDER_TO_STREAM) {
       const { helmet } = helmetContext as FilledContext;
 
@@ -53,6 +55,7 @@ const serverRenderer =
         },
         onError(err) {
           didError = true;
+          console.error(err);
         },
       });
     } else {
@@ -69,69 +72,5 @@ const serverRenderer =
       res.send(header + reactHtml + footer);
     }
   };
-
-export async function render(request: express.Request) {
-  let { query, dataRoutes } = createStaticHandler(routes);
-  let remixRequest = createFetchRequest(request);
-  let context = await query(remixRequest);
-  if (context instanceof Response) {
-    throw context;
-  }
-
-  let router = createStaticRouter(dataRoutes, context);
-  return (
-    <React.StrictMode>
-      <StaticRouterProvider
-        router={router}
-        context={context}
-        nonce="the-nonce"
-      />
-    </React.StrictMode>
-  );
-}
-
-export function createFetchHeaders(
-  requestHeaders: express.Request["headers"]
-): Headers {
-  let headers = new Headers();
-
-  for (let [key, values] of Object.entries(requestHeaders)) {
-    if (values) {
-      if (Array.isArray(values)) {
-        for (let value of values) {
-          headers.append(key, value);
-        }
-      } else {
-        headers.set(key, values);
-      }
-    }
-  }
-
-  return headers;
-}
-
-export function createFetchRequest(req: express.Request): Request {
-  let origin = `${req.protocol}://${req.get("host")}`;
-  // Note: This had to take originalUrl into account for presumably vite's proxying
-  let url = new URL(req.originalUrl || req.url, origin);
-
-  let controller = new AbortController();
-
-  req.on("close", () => {
-    controller.abort();
-  });
-
-  let init: RequestInit = {
-    method: req.method,
-    headers: createFetchHeaders(req.headers),
-    signal: controller.signal,
-  };
-
-  if (req.method !== "GET" && req.method !== "HEAD") {
-    init.body = req.body;
-  }
-
-  return new Request(url.href, init);
-}
 
 export { serverRenderer };

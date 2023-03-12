@@ -1,18 +1,18 @@
 .button {
-  color: var(--light-color);
-  background-color: var(--primary-color);
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 18px;
-  padding: 16px 28px;
   box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 16px 28px;
   border: none;
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  cursor: pointer;
+  font-size: 18px;
   font-style: normal;
   font-weight: 700;
-  font-size: 18px;
+  gap: 18px;
   line-height: 130%;
-  cursor: pointer;
 
   &:hover {
     opacity: .7;
@@ -21,7 +21,6 @@
   &:disabled {
     opacity: 1;
   }
-
 
   .loader > div {
     border-color: var(--light-color);

@@ -2,13 +2,12 @@ import path from "path";
 
 import "cross-fetch/polyfill";
 import { ChunkExtractor } from "@loadable/server";
-import { render, serverRenderer } from "@server/middlewares/serverRenderer";
+import { IS_RENDER_TO_STREAM, SERVER_PORT } from "@server/constants";
+import { serverRenderer, nonce } from "@server/middlewares";
 import { DIST_DIR, IS_DEV, SRC_DIR } from "_webpack/constants";
 import compression from "compression";
 import cookieParser from "cookie-parser";
 import express, { RequestHandler } from "express";
-
-import { IS_RENDER_TO_STREAM, SERVER_PORT } from "./constants";
 
 const { PORT = SERVER_PORT } = process.env;
 
@@ -18,6 +17,7 @@ const runServer = (hotReload?: () => RequestHandler[]) => {
   const chunkExtractor = new ChunkExtractor({ statsFile });
 
   app
+    .use(nonce)
     .use(express.json())
     .use(compression())
     .use(express.static(path.resolve(DIST_DIR)))
@@ -33,20 +33,9 @@ const runServer = (hotReload?: () => RequestHandler[]) => {
     });
   }
 
-  app.use("/*", async (req, res) => {
-    let url = req.originalUrl;
-
-    try {
-      let html = template.replace("<!--app-html-->", render(url as any));
-      res.setHeader("Content-Type", "text/html");
-      return res.status(200).end(html);
-    } catch (error) {
-      res.status(500).end("ERROR");
-    }
-  });
+  app.get("/*", serverRenderer(chunkExtractor));
 
   app.listen(PORT, () => {
-    // eslint-disable-next-line no-console
     console.log(
       `App listening on port ${PORT}! (render to ${
         IS_RENDER_TO_STREAM ? "stream" : "string"

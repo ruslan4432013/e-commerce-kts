@@ -1,4 +1,4 @@
-@use 'src/shared/styles' as *;
+@use '@styles' as *;
 
 .root {
   position: relative;
@@ -6,4 +6,5 @@
 
 .loader {
   @include center-both
+
 }

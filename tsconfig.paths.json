@@ -9,7 +9,9 @@
       "@features/*": ["src/features/*"],
       "@shared/*": ["src/shared/*"],
       "@server/*": ["src/server/*"],
-      "_webpack/*": ["webpack/*"]
+      "@styles": ["src/shared/styles/index.scss"],
+      "_webpack/*": ["webpack/*"],
+      "*": ["./src/*"],
     }
   }
 }

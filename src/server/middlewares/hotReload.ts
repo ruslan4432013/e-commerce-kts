@@ -4,7 +4,7 @@ import webpack from "webpack";
 import devMiddleware from "webpack-dev-middleware";
 import hotMiddleware from "webpack-hot-middleware";
 
-const compiler: webpack.Compiler = webpack({ ...config, mode: "development" });
+const compiler = webpack({ ...config, mode: "development" });
 
 export const devMiddlewareInstance = devMiddleware(compiler, {
   serverSideRender: true,
@@ -16,8 +16,6 @@ export const devMiddlewareInstance = devMiddleware(compiler, {
 });
 
 export function hotReload(): RequestHandler[] {
-  // as any - вынужденная мера, hotMiddleware принимает тип из @types/webpack,
-  // а не те, которые идут с вебпаком
   return [devMiddlewareInstance, hotMiddleware(compiler as any)];
 }
 

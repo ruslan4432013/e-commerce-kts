@@ -23,15 +23,8 @@ const universalLoader = (isServer: boolean = false): RuleSetRule => ({
           options: {
             modules: {
               mode: "local",
+              // This type of naming variant is better for gzip compression - https://github.com/webpack-contrib/css-loader/issues/406
               localIdentName: "[folder]__[local]--[hash:base64:5]",
-            },
-          },
-        },
-        {
-          loader: "postcss-loader",
-          options: {
-            postcssOptions: {
-              plugins: ["autoprefixer"],
             },
           },
         },

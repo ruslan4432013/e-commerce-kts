@@ -1,16 +1,29 @@
-import "@shared/styles/globals.scss";
-import "@shared/config/configureMobX";
-import { ProductDetailedPage } from "@pages/product-detailed";
-import { ProductsPage } from "@pages/products";
-import type { RouteObject } from "react-router-dom";
+import { FC, ReactElement, useEffect } from "react";
 
-export const routes: RouteObject[] = [
-  {
-    path: "/",
-    element: <ProductsPage />,
-  },
-  {
-    path: "/product/:productId",
-    element: <ProductDetailedPage />,
-  },
-];
+import "@shared/styles/globals.scss";
+import { ErrorBoundary } from "@shared/ui/error-boundary";
+import { Router } from "@src/pages";
+import { Offline } from "@src/shared/ui/offline";
+import cn from "classnames";
+
+const App: FC = (): ReactElement => {
+  useEffect(() => {
+    if (
+      !window.__PRELOADED_STATE__?.theme?.theme &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
+      /* Empty */
+    }
+  }, []);
+
+  return (
+    <ErrorBoundary>
+      <div className={cn("app-wrapper")}>
+        <Offline />
+        <Router />
+      </div>
+    </ErrorBoundary>
+  );
+};
+
+export { App };

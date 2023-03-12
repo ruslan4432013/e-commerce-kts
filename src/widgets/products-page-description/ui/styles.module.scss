@@ -2,14 +2,16 @@
 
 .root {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+
   @include mobile {
     padding-top: 50px;
     padding-bottom: 32px;
   }
+
   @include desktop {
     padding-top: 100px;
     padding-bottom: 79px;
@@ -19,13 +21,13 @@
 .title {
   @include heading1;
   margin-bottom: 20px;
-
 }
 
 .description {
   @include paragraph3;
-  color: var(--secondary-color);
   max-width: 600px;
+  color: var(--secondary-color);
+
   @include mobile {
     line-height: 25px;
   }

@@ -1,19 +1,46 @@
-import * as React from "react";
+import { StrictMode } from "react";
 
-import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { loadableReady } from "@loadable/component";
+import { USE_SERVICE_WORKER } from "@shared/config";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import { HelmetProvider } from "react-helmet-async";
+import { BrowserRouter } from "react-router-dom";
 
-import { routes } from "./app";
+import { App } from "./app";
 
-hydrate();
+if (module.hot) {
+  module.hot.accept();
+}
 
-async function hydrate() {
-  let router = createBrowserRouter(routes);
+if (
+  USE_SERVICE_WORKER &&
+  String(process.env.NODE_ENV).trim() !== "development"
+) {
+  const startServiceWorkerPromise = async () => {
+    const { startServiceWorker } = await import("./serviceWorker");
+    startServiceWorker();
+  };
 
-  ReactDOM.hydrateRoot(
-    document.getElementById("app")!,
-    <React.StrictMode>
-      <RouterProvider router={router} fallbackElement={null} />
-    </React.StrictMode>
-  );
+  startServiceWorkerPromise();
+}
+
+const indexJSX = (
+  <StrictMode>
+    <HelmetProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </HelmetProvider>
+  </StrictMode>
+);
+
+const container = document.getElementById("root")!;
+
+// eslint-disable-next-line no-undef
+if (NO_SSR) {
+  createRoot(container).render(indexJSX);
+} else {
+  loadableReady(() => {
+    hydrateRoot(container, indexJSX);
+  });
 }
