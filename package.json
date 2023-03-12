@@ -1,12 +1,11 @@
 {
-  "name": "react-proto",
-  "version": "1.3.0",
-  "description": "React TypeScript Boilerplate",
-  "author": "Max L Stop&Go",
+  "name": "e-commerce-kts",
   "license": "ISC",
-  "sideEffects": [
-    "*.css",
-    "*.scss"
+  "version": "1.0.0",
+  "private": true,
+  "browserslist": [
+    ">0.2%",
+    "not dead"
   ],
   "scripts": {
     "clean": "rimraf dist",
