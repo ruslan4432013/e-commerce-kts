@@ -95,6 +95,7 @@ const clientConfig: Configuration = {
     devServer: {
       historyApiFallback: true,
       port: DEV_SERVER_PORT,
+      open: true,
     },
   }),
   optimization: {
