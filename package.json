@@ -1,7 +1,9 @@
 {
   "name": "e-commerce-kts",
-  "license": "ISC",
+  "license": "MIT",
   "version": "1.0.0",
+  "repository": "https://github.com/ruslan4432013/e-commerce-kts.git",
+  "author": "Ruslan Ivanov <ruslan4432013@gmail.com>",
   "private": true,
   "browserslist": [
     ">0.2%",
