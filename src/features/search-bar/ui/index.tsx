@@ -9,8 +9,8 @@ import { MultiDropdown, type Option } from "@shared/ui/multi-dropdown";
 import { observer } from "mobx-react-lite";
 import { useSearchParams } from "react-router-dom";
 
-import { ReactComponent as FilterIcon } from "./filter.svg";
-import { ReactComponent as SearchIcon } from "./search.svg";
+import FilterIcon from "./filter.svg";
+import SearchIcon from "./search.svg";
 import s from "./styles.module.scss";
 import { categoriesToOptions, pluralizeOptions } from "../lib";
 

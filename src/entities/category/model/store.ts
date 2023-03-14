@@ -18,12 +18,14 @@ export class CategoryListStore implements ILocalStore {
 
   private _currentCategory: null | Category = null;
 
-  constructor(private _root: ProductPageStore) {
+  private _root: ProductPageStore;
+  constructor(root: ProductPageStore) {
     makeAutoObservable<this, PrivateFields>(
       this,
       { _root: false },
       { autoBind: true, deep: false }
     );
+    this._root = root;
     this.init();
   }
 

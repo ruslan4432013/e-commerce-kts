@@ -7,9 +7,11 @@ export class ProductDetailedStore implements ILocalStore {
 
   private _product: Product | null = null;
 
-  constructor(private _productId: string) {
+  private _productId: string;
+  constructor(productId: string) {
     makeAutoObservable(this, {}, { autoBind: true, deep: false });
-    this.init(_productId);
+    this._productId = productId;
+    this.init(productId);
   }
 
   get meta() {
