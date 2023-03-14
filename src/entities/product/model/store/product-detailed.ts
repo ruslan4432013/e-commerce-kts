@@ -7,10 +7,8 @@ export class ProductDetailedStore implements ILocalStore {
 
   private _product: Product | null = null;
 
-  private _productId: string;
   constructor(productId: string) {
     makeAutoObservable(this, {}, { autoBind: true, deep: false });
-    this._productId = productId;
     this.init(productId);
   }
 
@@ -23,7 +21,10 @@ export class ProductDetailedStore implements ILocalStore {
   }
 
   public async load(productId: string | number) {
-    if (this._meta === Meta.LOADING) return;
+    if (this._meta === Meta.LOADING) {
+      return;
+    }
+
     this.setMeta(Meta.LOADING);
     try {
       const productResponse = await productsApi.getProductById({ productId });

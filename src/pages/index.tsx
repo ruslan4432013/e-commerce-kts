@@ -1,14 +1,17 @@
-import { ProductDetailedPage } from "@pages/product-detailed";
-import { ProductsPage } from "@pages/products";
-import { createBrowserRouter } from "react-router-dom";
+import { FC } from "react";
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <ProductsPage />,
-  },
-  {
-    path: "/product/:productId",
-    element: <ProductDetailedPage />,
-  },
-]);
+import { ROUTE_CONSTANTS } from "@shared/config";
+import { Route, Routes } from "react-router-dom";
+
+import { NotFound } from "./not-found/NotFound";
+import { ProductDetailedPage } from "./product-detailed";
+import { ProductsPage } from "./products";
+
+export const Router: FC = () => (
+  <Routes>
+    <Route path="*" element={<NotFound />} />
+    <Route path={ROUTE_CONSTANTS.HOME} element={<ProductsPage />} />
+    <Route path={ROUTE_CONSTANTS.PRODUCT} element={<ProductDetailedPage />} />
+    <Route path={ROUTE_CONSTANTS.NOT_FOUND} element={<NotFound />} />
+  </Routes>
+);

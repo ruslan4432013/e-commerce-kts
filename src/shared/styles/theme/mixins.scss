@@ -1,9 +1,10 @@
 @import 'fonts';
-@import "breakpoints";
+
+@import 'breakpoints';
 
 @mixin heading1 {
-  font-weight: $fw-bold;
   font-size: 64px;
+  font-weight: $fw-bold;
 
   @include mobile {
     font-size: 24px;
@@ -11,8 +12,8 @@
 }
 
 @mixin heading2 {
-  font-weight: $fw-bold;
   font-size: 44px;
+  font-weight: $fw-bold;
 
   @include mobile {
     font-size: 20px;
@@ -20,25 +21,26 @@
 }
 
 @mixin heading3 {
-  font-weight: $fw-bold;
   font-size: 26px;
+  font-weight: $fw-bold;
 }
 
 @mixin heading5 {
-  font-weight: $fw-bold;
   font-size: 18px;
+  font-weight: $fw-bold;
 }
 
 @mixin paragraph3 {
-  font-weight: $fw-medium;
   font-size: 18px;
+  font-weight: $fw-medium;
+
   @include mobile {
     font-size: 14px;
   }
 }
 
 @mixin text-regular {
-  font-weight: $fw-medium;
-  font-size: 18px;
   color: var(--dark-color);
+  font-size: 18px;
+  font-weight: $fw-medium;
 }

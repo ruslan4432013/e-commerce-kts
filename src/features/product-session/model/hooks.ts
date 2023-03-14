@@ -7,6 +7,7 @@ export const useProductStore = () => {
   if (!store) {
     throw new Error("Category List Store has not been installed");
   }
+
   return store;
 };
 

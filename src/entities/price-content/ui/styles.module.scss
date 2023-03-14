@@ -1,16 +1,17 @@
-@use 'src/shared/styles' as *;
+@use '@styles' as *;
 
 .product {
 
   &__content {
     margin-top: 12px;
-
     font-weight: $fw-bold;
+
     @include font-size(14px, 1.3);
+
     @include desktop {
       margin-top: 18px;
+
       @include font-size(24px, 1.3);
     }
   }
-
 }

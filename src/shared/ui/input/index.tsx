@@ -1,5 +1,4 @@
-import React, { InputHTMLAttributes } from "react";
-import { FC } from "react";
+import { InputHTMLAttributes, FC } from "react";
 
 import cn from "classnames";
 

@@ -4,9 +4,14 @@
     "paths": {
       "@entities/*": ["src/entities/*"],
       "@pages/*": ["src/pages/*"],
+      "@src/*": ["src/*"],
       "@widgets/*": ["src/widgets/*"],
       "@features/*": ["src/features/*"],
       "@shared/*": ["src/shared/*"],
+      "@server/*": ["src/server/*"],
+      "@styles": ["src/shared/styles/index.scss"],
+      "_webpack/*": ["webpack/*"],
+      "*": ["./src/*"],
     }
   }
 }

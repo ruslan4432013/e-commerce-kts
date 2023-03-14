@@ -1,8 +1,20 @@
-import "@shared/styles/globals.scss";
-import "@shared/config/configureMobX";
-import { router } from "@pages/index";
-import { RouterProvider } from "react-router-dom";
+import { FC, ReactElement } from "react";
 
-export function App() {
-  return <RouterProvider router={router} />;
-}
+import "@shared/styles/globals.scss";
+import { ErrorBoundary } from "@shared/ui/error-boundary";
+import { Router } from "@src/pages";
+import { Offline } from "@src/shared/ui/offline";
+import cn from "classnames";
+
+const App: FC = (): ReactElement => {
+  return (
+    <ErrorBoundary>
+      <div className={cn("app-wrapper")}>
+        <Offline />
+        <Router />
+      </div>
+    </ErrorBoundary>
+  );
+};
+
+export { App };

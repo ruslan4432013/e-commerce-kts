@@ -7,5 +7,6 @@ export const useProductStore = () => {
   if (!store) {
     throw new Error("Product Store has not been installed");
   }
+
   return store;
 };

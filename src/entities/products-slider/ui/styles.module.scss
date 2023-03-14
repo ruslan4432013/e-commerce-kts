@@ -1,30 +1,30 @@
-@use 'src/shared/styles' as *;
+@use '@styles' as *;
 
 .slider {
-  width: 100%;
-  height: calc(88.5vw * 327 / 375);
-  max-width: 600px;
-  max-height: 600px;
-  transition: all 0.5s ease-in-out;
   position: relative;
-  margin: 0 auto;
   overflow: hidden;
+  width: 100%;
+  max-width: 600px;
+  height: calc(88.5vw * 327 / 375);
+  max-height: 600px;
+  margin: 0 auto;
+  transition: all 0.5s ease-in-out;
 
-  @media (min-width: 768px) and (max-width: 1200px){
+  @media (min-width: 768px) and (max-width: 1200px) {
     width: 50vw;
     height: 50vw;
   }
 
   &_arrow {
-    background: var(--dark-color);
-    cursor: pointer;
+    padding: 10px;
     border: 1px solid var(--dark-color);
     border-radius: 50%;
+    background: var(--dark-color);
+    cursor: pointer;
 
     @include shadow-small;
-    @include center-Y;
 
-    padding: 10px;
+    @include center-Y;
 
     @include desktop {
       padding: 16px;
@@ -44,7 +44,6 @@
   }
 }
 
-
 .arrow_right {
   transform: rotateZ(180deg);
 }
@@ -52,6 +51,7 @@
 .icon {
   width: 18px;
   height: 18px;
+
   @include desktop {
     width: 30px;
     height: 30px;

@@ -4,9 +4,10 @@ html,
 body {
   padding: 0;
   margin: 0;
-  @include text-regular;
-  line-height: 180%;
   font-family: 'Eudoxus Sans', sans-serif;
+  line-height: 180%;
+
+  @include text-regular;
 }
 
 a {
@@ -16,8 +17,8 @@ a {
 
 * {
   box-sizing: border-box;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 h1,

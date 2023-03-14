@@ -1,23 +1,24 @@
-@use 'src/shared/styles' as *;
+@use '@styles' as *;
 
 .input {
-  padding: 26px 28px;
-  box-sizing: border-box;
   width: 100%;
-  outline: none;
-  font-weight: 500;
-  font-size: 18px;
-  color: var(--dark-color);
-  line-height: 180%;
-  background: var(--light-color);
+  box-sizing: border-box;
+  padding: 26px 50px;
   border: none;
+  background: var(--light-color);
+  color: var(--dark-color);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 180%;
+  outline: none;
+
   @include shadow-small;
 
   &::placeholder {
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 180%;
     color: var(--secondary-color);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 180%;
   }
 
   &:focus {
@@ -27,9 +28,9 @@
 
 .input_disabled {
   font-family: 'Roboto', sans-serif;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
   line-height: 180%;
   opacity: .7;
 }
