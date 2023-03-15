@@ -8,7 +8,7 @@ export class ProductPageStore implements ILocalStore {
   public categoryStore: CategoryListStore;
 
   constructor() {
-    this.categoryStore = new categoryModel.store.CategoryListStore(this);
+    this.categoryStore = new categoryModel.store.CategoryListStore();
     this.productListStore = new productModel.store.ProductListStore(this);
   }
 

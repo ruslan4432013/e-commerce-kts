@@ -20,6 +20,7 @@ export const ProductSlider: FC<SliderProps> = ({ images }) => {
       const parentWidth = parentRef.current?.offsetWidth || 375;
       setWidth(parentWidth);
     };
+
     setInnerWidth();
     window.addEventListener("resize", setInnerWidth);
     return () => {

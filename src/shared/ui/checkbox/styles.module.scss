@@ -1,8 +1,8 @@
-@use 'src/shared/styles' as *;
+@use '@styles' as *;
 
 .checkbox {
-  display: block;
   position: relative;
+  display: block;
   cursor: pointer;
   font-size: 22px;
   -webkit-user-select: none;
@@ -14,10 +14,10 @@
 /* Hide the browser's default checkbox */
 .checkbox input {
   position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
   width: 0;
+  height: 0;
+  cursor: pointer;
+  opacity: 0;
 }
 
 /* Create a custom checkbox */
@@ -25,11 +25,13 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 40px;
   width: 40px;
+  height: 40px;
   border: 1px solid var(--light-color);
   background-color: var(--light-color);
+
   @include shadow-checkbox
+
 }
 
 /* On mouse-over, add a grey background color */
@@ -48,27 +50,25 @@
 
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
-  content: "";
   position: absolute;
   display: none;
+  content: '';
 }
 
 /* Show the checkmark when checked */
 .checkbox input:checked ~ .checkmark:after {
   display: block;
-  background: url("./Check.svg") no-repeat 6px 4px;
+  background: url('./Check.svg') no-repeat 6px 4px;
 }
 
 .checkbox input:disabled ~ .checkmark:after {
   opacity: 0.7;
 }
 
-
 .checkbox .checkmark:after {
-  left: 0;
-  top: 0;
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
 }
-

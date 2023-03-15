@@ -11,6 +11,7 @@ export function filterUniqueByKey<T extends ObjectWithKey>(
     if (uniqueValues.has(obj[key])) {
       return false;
     }
+
     uniqueValues.add(obj[key]);
     return true;
   });
