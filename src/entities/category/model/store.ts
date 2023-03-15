@@ -1,4 +1,3 @@
-import type { ProductPageStore } from "@features/product-session";
 import { Category, categoryApi, Meta } from "@shared/api";
 import {
   collection,
@@ -18,14 +17,12 @@ export class CategoryListStore implements ILocalStore {
 
   private _currentCategory: null | Category = null;
 
-  private _root: ProductPageStore;
-  constructor(root: ProductPageStore) {
+  constructor() {
     makeAutoObservable<this, PrivateFields>(
       this,
       { _root: false },
       { autoBind: true, deep: false }
     );
-    this._root = root;
     this.init();
   }
 
@@ -48,7 +45,10 @@ export class CategoryListStore implements ILocalStore {
   }
 
   public async load() {
-    if (this._meta === Meta.LOADING) return;
+    if (this._meta === Meta.LOADING) {
+      return;
+    }
+
     this.setMeta(Meta.LOADING);
     try {
       const categoryResponse = await categoryApi.getCategoryList();

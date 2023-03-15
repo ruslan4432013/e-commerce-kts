@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 
 import cn from "classnames";
 
@@ -49,6 +49,7 @@ export const MultiDropdown: FC<MultiDropdownProps> = (props) => {
       : [...value, option];
     onChange(newValue);
   };
+
   return (
     <div className={cn(s["multi-dropdown"], "multi-dropdown")}>
       <button

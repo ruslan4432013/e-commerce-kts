@@ -1,4 +1,5 @@
 /* Миксин для мобильных устройств */
+
 @mixin mobile {
   @media only screen and (max-width: 767px) {
     @content;
@@ -6,6 +7,7 @@
 }
 
 /* Миксин для настольных устройств */
+
 @mixin desktop {
   @media only screen and (min-width: 768px) {
     @content;

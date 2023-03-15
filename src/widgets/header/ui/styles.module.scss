@@ -1,8 +1,5 @@
-@use 'src/shared/styles' as *;
+@use '@styles' as *;
 
 .container {
   @include container;
 }
-
-
-

@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  backend:
+    container_name: backend
+    build:
+      context: '..'
+      dockerfile: ./docker/Dockerfile
+    expose:
+      - 3000
+    environment:
+      NODE_ENV: production
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
