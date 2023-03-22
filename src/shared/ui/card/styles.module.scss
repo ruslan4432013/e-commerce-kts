@@ -5,12 +5,23 @@
   max-height: 544px;
   cursor: pointer;
   list-style-type: none;
+  transition: all 0.2s ease-in-out 0s;
+
+  &:hover {
+    box-shadow: 0 10px 30px rgba(22, 22, 26, 0.15);
+    transform: scale(1.1);
+  }
 }
+
 
 .card_item {
   position: relative;
   height: 100%;
   transition: all 0.2s ease-in-out 0s;
+
+  &__description {
+    padding: 0 0 10px 20px;
+  }
 }
 
 /* изображение */

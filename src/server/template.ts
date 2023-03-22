@@ -20,7 +20,6 @@ export const getHtmlTemplate = (props: {
             <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
             <title>E-Commerce</title>
             ${props.styleTags}
-            ${props.helmetData.meta.toString()}
         </head>
         <body>
           <noscript>

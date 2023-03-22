@@ -37,12 +37,14 @@ export const Card: FC<CardProps> = (props) => {
             height="360"
           />
         </Link>
-        {division && <p className={s.card_item__division}>{division}</p>}
-        <h3 className={s.card_item__title} id={altText}>
-          {title}
-        </h3>
-        <h5 className={s.card_item__subtitle}>{subtitle}</h5>
-        {content}
+        <div className={s.card_item__description}>
+          {division && <p className={s.card_item__division}>{division}</p>}
+          <h3 className={s.card_item__title} id={altText}>
+            {title}
+          </h3>
+          <h5 className={s.card_item__subtitle}>{subtitle}</h5>
+          {content}
+        </div>
       </div>
     </li>
   );
