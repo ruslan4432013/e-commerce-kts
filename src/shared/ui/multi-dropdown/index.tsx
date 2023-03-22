@@ -33,6 +33,7 @@ export const MultiDropdown: FC<MultiDropdownProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownMenuStyle = {
     height: isOpen && !disabled ? getDropdownMenuHeight(50, options.length) : 0,
+    border: "none",
   };
 
   const keySet = new Set(value.map((val) => val.key));
@@ -51,37 +52,50 @@ export const MultiDropdown: FC<MultiDropdownProps> = (props) => {
   };
 
   return (
-    <div className={cn(s["multi-dropdown"], "multi-dropdown")}>
-      <button
-        className={cn(s.dropdown_toggle, {
-          [s.focused]: isOpen,
-        })}
-        id="multiDropdownMenuButton"
-        type="button"
-        disabled={disabled}
-        onClick={handleDropdownClick}
+    <>
+      <div
+        tabIndex={0}
+        onKeyDown={(event) => {
+          if (event.key === "Escape") {
+            setIsOpen(false);
+          }
+        }}
+        className={cn(s.multi_dropdown, "multi-dropdown")}
       >
-        {pluralizeOptions(value)}
-      </button>
-      <ul
-        style={dropdownMenuStyle}
-        className={s.dropdown_menu}
-        role={"menuitem"}
-        aria-expanded="false"
-        aria-labelledby="multiDropdownMenuButton"
-      >
-        {options.map((option) => (
-          <li
-            key={option.key}
-            onClick={handleOptionClick(option)}
-            className={cn(s.dropdown_menu_item, {
-              [s.dropdown_menu_item__active]: keySet.has(option.key),
-            })}
-          >
-            {option.value}
-          </li>
-        ))}
-      </ul>
-    </div>
+        <button
+          className={cn(s.dropdown_toggle, {
+            [s.focused]: isOpen,
+          })}
+          id="multiDropdownMenuButton"
+          type="button"
+          disabled={disabled}
+          onClick={handleDropdownClick}
+        >
+          {pluralizeOptions(value)}
+        </button>
+        <ul
+          style={dropdownMenuStyle}
+          className={s.dropdown_menu}
+          role={"menuitem"}
+          aria-expanded="false"
+          aria-labelledby="multiDropdownMenuButton"
+        >
+          {options.map((option) => (
+            <li
+              key={option.key}
+              onClick={handleOptionClick(option)}
+              className={cn(s.dropdown_menu_item, {
+                [s.dropdown_menu_item__active]: keySet.has(option.key),
+              })}
+            >
+              {option.value}
+            </li>
+          ))}
+        </ul>
+        {isOpen && (
+          <div className={s.backdrop} onClick={() => setIsOpen(false)} />
+        )}
+      </div>
+    </>
   );
 };

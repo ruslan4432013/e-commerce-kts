@@ -1,6 +1,6 @@
 @use '@styles' as *;
 
-.multi-dropdown {
+.multi_dropdown {
   position: relative;
   width: 100%;
   font-size: 18px;
@@ -78,4 +78,12 @@
 
 .dropdown_menu_item__active {
   color: var(--primary-color);
+}
+
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
