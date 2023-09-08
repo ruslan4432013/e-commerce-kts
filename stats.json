@@ -1,0 +1,196 @@
+{
+  "name": "client",
+  "hash": "fdc9b4ae12bc0aa8f589",
+  "publicPath": "/",
+  "outputPath": "/Users/ruslan.ivanov/Documents/learn-projects/e-commerce-kts/dist",
+  "assetsByChunkName": {
+    "main": [
+      "main.00a6b84aa8aee369e36b.js",
+      "main.a76701c06d93e1bcc025.css"
+    ],
+    "vendors": [
+      "vendors.96ef214953ac7a6e4be3.js"
+    ]
+  },
+  "assets": [
+    {
+      "type": "asset",
+      "name": "vendors.96ef214953ac7a6e4be3.js",
+      "size": 269071,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "chunkhash": "96ef214953ac7a6e4be3",
+        "javascriptModule": false,
+        "minimized": true,
+        "related": {
+          "license": "vendors.96ef214953ac7a6e4be3.js.LICENSE.txt"
+        }
+      },
+      "chunkNames": [
+        "vendors"
+      ],
+      "chunkIdHints": [
+        "vendor"
+      ],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 1,
+      "chunks": [
+        216
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "main.00a6b84aa8aee369e36b.js",
+      "size": 50904,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "chunkhash": "00a6b84aa8aee369e36b",
+        "javascriptModule": false,
+        "minimized": true
+      },
+      "chunkNames": [
+        "main"
+      ],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [
+        179
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "main.a76701c06d93e1bcc025.css",
+      "size": 15567,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "contenthash": "a76701c06d93e1bcc025"
+      },
+      "chunkNames": [
+        "main"
+      ],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [
+        179
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "481.8f1b86f116ffd6c26a12.js",
+      "size": 2001,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "chunkhash": "8f1b86f116ffd6c26a12",
+        "javascriptModule": false,
+        "minimized": true
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [
+        481
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "favicon.svg",
+      "size": 614,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "copied": true,
+        "sourceFilename": "src/assets/images/favicon.svg"
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "index.html",
+      "size": 500,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {},
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [],
+      "auxiliaryChunks": []
+    }
+  ],
+  "namedChunkGroups": {
+    "main": {
+      "name": "main",
+      "chunks": [
+        216,
+        179
+      ],
+      "assets": [
+        {
+          "name": "vendors.96ef214953ac7a6e4be3.js"
+        },
+        {
+          "name": "main.00a6b84aa8aee369e36b.js"
+        },
+        {
+          "name": "main.a76701c06d93e1bcc025.css"
+        }
+      ],
+      "filteredAssets": 0,
+      "assetsSize": null,
+      "filteredAuxiliaryAssets": 0,
+      "auxiliaryAssetsSize": 0,
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "generator": "loadable-components",
+  "chunks": [
+    {
+      "id": 179,
+      "files": [
+        "main.00a6b84aa8aee369e36b.js",
+        "main.a76701c06d93e1bcc025.css"
+      ]
+    },
+    {
+      "id": 481,
+      "files": [
+        "481.8f1b86f116ffd6c26a12.js"
+      ]
+    },
+    {
+      "id": 216,
+      "files": [
+        "vendors.96ef214953ac7a6e4be3.js"
+      ]
+    }
+  ]
+}
