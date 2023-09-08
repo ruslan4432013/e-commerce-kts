@@ -1,32 +1,32 @@
 {
   "name": "client",
-  "hash": "fdc9b4ae12bc0aa8f589",
+  "hash": "c6ad0e780ef743551658",
   "publicPath": "/",
   "outputPath": "/Users/ruslan.ivanov/Documents/learn-projects/e-commerce-kts/dist",
   "assetsByChunkName": {
     "main": [
-      "main.00a6b84aa8aee369e36b.js",
+      "main.6f945877e963d401c8dd.js",
       "main.a76701c06d93e1bcc025.css"
     ],
     "vendors": [
-      "vendors.96ef214953ac7a6e4be3.js"
+      "vendors.e452483e062a277ba30a.js"
     ]
   },
   "assets": [
     {
       "type": "asset",
-      "name": "vendors.96ef214953ac7a6e4be3.js",
-      "size": 269071,
+      "name": "vendors.e452483e062a277ba30a.js",
+      "size": 269471,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "chunkhash": "96ef214953ac7a6e4be3",
+        "chunkhash": "e452483e062a277ba30a",
         "javascriptModule": false,
         "minimized": true,
         "related": {
-          "license": "vendors.96ef214953ac7a6e4be3.js.LICENSE.txt"
+          "license": "vendors.e452483e062a277ba30a.js.LICENSE.txt"
         }
       },
       "chunkNames": [
@@ -45,14 +45,14 @@
     },
     {
       "type": "asset",
-      "name": "main.00a6b84aa8aee369e36b.js",
+      "name": "main.6f945877e963d401c8dd.js",
       "size": 50904,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "chunkhash": "00a6b84aa8aee369e36b",
+        "chunkhash": "6f945877e963d401c8dd",
         "javascriptModule": false,
         "minimized": true
       },
@@ -154,10 +154,10 @@
       ],
       "assets": [
         {
-          "name": "vendors.96ef214953ac7a6e4be3.js"
+          "name": "vendors.e452483e062a277ba30a.js"
         },
         {
-          "name": "main.00a6b84aa8aee369e36b.js"
+          "name": "main.6f945877e963d401c8dd.js"
         },
         {
           "name": "main.a76701c06d93e1bcc025.css"
@@ -176,7 +176,7 @@
     {
       "id": 179,
       "files": [
-        "main.00a6b84aa8aee369e36b.js",
+        "main.6f945877e963d401c8dd.js",
         "main.a76701c06d93e1bcc025.css"
       ]
     },
@@ -189,7 +189,7 @@
     {
       "id": 216,
       "files": [
-        "vendors.96ef214953ac7a6e4be3.js"
+        "vendors.e452483e062a277ba30a.js"
       ]
     }
   ]
