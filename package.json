@@ -22,7 +22,9 @@
     "build:static": "yarn run clean  && cross-env NODE_ENV=production NO_SSR=true webpack --mode production",
     "build:static:report": "yarn run build:static --withReport",
     "lint": "eslint . --fix --ext .ts,.tsx,.js",
-    "ts-check": "tsc --skipLibCheck --noEmit --project tsconfig.json"
+    "lint:types": "tsc --skipLibCheck --noEmit --project tsconfig.json",
+    "predeploy": "yarn build:static",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.10",
@@ -64,6 +66,7 @@
     "eslint-plugin-react": "7.32.2",
     "express": "4.18.2",
     "fork-ts-checker-webpack-plugin": "7.3.0",
+    "gh-pages": "^6.0.0",
     "html-webpack-plugin": "5.5.0",
     "jest": "29.4.1",
     "jest-environment-jsdom": "29.4.1",

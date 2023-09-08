@@ -4,7 +4,7 @@ import { loadableReady } from "@loadable/component";
 import { USE_SERVICE_WORKER } from "@shared/config";
 import { createRoot, hydrateRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
 import { App } from "./app";
 
@@ -27,9 +27,9 @@ if (
 const indexJSX = (
   <StrictMode>
     <HelmetProvider>
-      <BrowserRouter>
+      <HashRouter>
         <App />
-      </BrowserRouter>
+      </HashRouter>
     </HelmetProvider>
   </StrictMode>
 );

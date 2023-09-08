@@ -48,6 +48,7 @@ const plugins: WebpackPluginInstance[] = [
         new HtmlWebpackPlugin({
           title: "My App",
           template: "./src/assets/index.html",
+          publicPath: "",
         }),
       ]
     : []),
