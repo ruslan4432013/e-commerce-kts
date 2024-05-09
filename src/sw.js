@@ -35,10 +35,7 @@ const clearCache = async () => {
       .filter((key) => key !== CACHE_NAME)
       .map((key) => caches.delete(key));
 
-    for (const success of deletions) {
-      // eslint-disable-next-line no-await-in-loop
-      await success;
-    }
+    await Promise.all(deletions);
   } catch (err) {}
 };
 

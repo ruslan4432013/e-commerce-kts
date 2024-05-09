@@ -33,6 +33,7 @@
   "rules": {
     "import/no-unresolved": "off",
     "react/react-in-jsx-scope": "off",
+    "no-undef": "off",
     "no-unused-vars": "off",
     "no-useless-catch": "off",
     "import/named": "off",
